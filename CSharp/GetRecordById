@@ -1,0 +1,25 @@
+/// <summary>
+/// Retrieves a single record by entity name and ID.
+/// Allows specifying which attributes to return.
+/// </summary>
+/// <param name="entityName">Logical name of the entity (e.g., "account").</param>
+/// <param name="id">GUID of the record.</param>
+/// <param name="columns">Optional list of columns to retrieve. Pass null for all columns.</param>
+/// <returns>Entity object or null if not found.</returns>
+
+public Entity GetRecordById(Guid ID, string EntityName, ColumnSet columnSet = null)
+  {
+       try
+       {
+         if (columnSet == null)
+            {
+               columnSet = new ColumnSet(true);
+            }
+            Entity retrivedRecord = service.Retrieve(EntityName, ID, columnSet);
+            return retrivedRecord;
+            }
+       catch (Exception e)
+       {
+          throw;
+       }     
+  }        
